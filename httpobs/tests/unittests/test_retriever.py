@@ -1,15 +1,15 @@
-import random
 import requests
 import string
 
 from unittest import TestCase
 
 from httpobs.scanner.retriever import retrieve_all
+import secrets
 
 
 class TestRetriever(TestCase):
     def test_retrieve_non_existent_domain(self):
-        domain = ''.join(random.choice(string.ascii_lowercase) for _ in range(223)) + '.net'
+        domain = ''.join(secrets.choice(string.ascii_lowercase) for _ in range(223)) + '.net'
         reqs = retrieve_all(domain)
 
         self.assertIsNone(reqs['responses']['auto'])
