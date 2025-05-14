@@ -1,4 +1,3 @@
-from random import randrange
 from time import sleep
 from urllib.parse import parse_qs, urlparse
 
@@ -22,12 +21,13 @@ import psutil
 import redis
 import subprocess
 import sys
+import secrets
 
 
 def main():
     # Start each scanner at a random point in the range to spread out database maintenance
-    dequeue_loop_count = randrange(0, SCANNER_MAINTENANCE_CYCLE_FREQUENCY)
-    materialized_view_loop_count = randrange(0, SCANNER_MATERIALIZED_VIEW_REFRESH_FREQUENCY)
+    dequeue_loop_count = secrets.SystemRandom().randrange(0, SCANNER_MAINTENANCE_CYCLE_FREQUENCY)
+    materialized_view_loop_count = secrets.SystemRandom().randrange(0, SCANNER_MATERIALIZED_VIEW_REFRESH_FREQUENCY)
 
     # Parse the BROKER_URL
     broker_url = urlparse(BROKER_URL)
