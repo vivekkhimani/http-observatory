@@ -209,7 +209,7 @@ def api_get_scanner_stats():
             },
         },
         'states': {state: stats['states'].get(state, 0) for state in STATES},
-    }, indent=4 if pretty else None, sort_keys=pretty, default=str))
+    }, indent=4 if pretty else None, sort_keys=pretty, default=str), {'Content-Type': 'application/json'})
 
     resp.mimetype = 'application/json'
 
